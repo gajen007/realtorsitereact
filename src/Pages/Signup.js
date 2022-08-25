@@ -58,8 +58,9 @@ function Signup() {
                     id="spagree"
                     className="form-check-input"
                     required
-                  />{" "}
-                  &nbsp; I agree <a href="#">Terms and Conditions</a>
+                  />
+
+                  &nbsp; I agree Terms and Conditions
                 </div>
                 &nbsp;<hr></hr>
               </div>

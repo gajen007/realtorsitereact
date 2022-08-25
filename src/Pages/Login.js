@@ -17,7 +17,7 @@ function HomePage() {
       cache: "no-cache",
     })
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           return response.json();
         } else {
           alert("Backend Error..!");

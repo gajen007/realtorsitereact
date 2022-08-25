@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import propertyImage from "../Images/home.jpg"
 // command to install fontawesome
 // npm install --save @fortawesome/free-solid-svg-icons
 // npm install --save @fortawesome/react-fontawesome
@@ -21,7 +19,7 @@ function ListingGrid(props) { //props is an object as a parameter
                     <div className="row border-bottom">
                         <div className="col-md-2"><FontAwesomeIcon icon={faMapLocationDot} /></div>
                         <div className="col-md-10">
-                            <a href={"https://www.google.com/maps/search/?api=1&query=" + props.latitude + "%2C" + props.longitude} target="_blank">{props.address}</a>
+                            <a href={"https://www.google.com/maps/search/?api=1&query=" + props.latitude + "%2C" + props.longitude} >{props.address}</a>
                         </div>
                     </div>
                     <div className="row border-bottom">
