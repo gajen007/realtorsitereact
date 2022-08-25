@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import $ from 'jquery';
 import sampleMap from "../Images/map.png";
 import NavBar from "./NavBar";
 function SingleListing() {
@@ -12,7 +11,7 @@ function SingleListing() {
   useEffect(() => {
     fetch("http://localhost:8000/api/singleListing?mlsNumber=" + mlsNumber, { method: 'GET', mode: 'cors', cache: 'no-cache' })
       .then(response => {
-        if (response.status == 200) { return response.json(); }
+        if (response.status === 200) { return response.json(); }
         else { console.log('Backend Error..!'); console.log(response.text()); }
       })
       .then(data => {
@@ -20,7 +19,6 @@ function SingleListing() {
       })
       .catch(() => { console.log("Network connection error"); });
   }, [])
-  const url = "https://www.google.com/maps/search/?api=1&query=" + jsonData.latitude + "%2C" + jsonData.longitude;
   return (
     <React.Fragment>
       <NavBar></NavBar>
@@ -73,7 +71,7 @@ function SingleListing() {
                     <tbody>
                       <tr>
                         <th scope="row">Address</th>
-                        <td><a href={"https://www.google.com/maps/search/?api=1&query=" + jsonData.latitude + "%2C" + jsonData.longitude} target="_blank">{jsonData.address}</a></td>
+                        <td><a href={"https://www.google.com/maps/search/?api=1&query=" + jsonData.latitude + "%2C" + jsonData.longitude}>{jsonData.address}</a></td>
                       </tr>
                       <tr>
                         <th scope="row">Bedrooms</th>
