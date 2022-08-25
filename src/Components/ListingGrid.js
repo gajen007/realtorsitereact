@@ -93,17 +93,17 @@ function ListingGrid(props) { //props is an object as a parameter
                 <div className="card-footer">
                     <div className="row">
                         <div className="col">
-                            <a href="#" className="btn btn-outline-primary form-control">
+                            <div className="btn btn-outline-primary form-control">
                                 <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>&nbsp;
                                 Enquiry
-                            </a>
+                            </div>
                         </div>
                         <div className="col">
                             <Link to={"singleListing/"+props.mlsnumber}>
-                                <a href="#" className="btn btn-outline-success form-control">
+                                <div className="btn btn-outline-success form-control">
                                     <FontAwesomeIcon icon={faMagnifyingGlassLocation}></FontAwesomeIcon>&nbsp;
                                     Show
-                                </a>
+                                </div>
                             </Link>
                         </div>
                     </div>
