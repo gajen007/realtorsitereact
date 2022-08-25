@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from '../Pages/HomePage.js'
 import SingleListing from '../Pages/SingleListing.js'
+import Login from '../Pages/Login.js'
+import Signup from '../Pages/Signup.js'
 
 const Ourroutes = () => {
 
@@ -9,6 +11,9 @@ const Ourroutes = () => {
         <Routes>
           <Route exact path="/" element={<HomePage/>}/>
           <Route exact path="singleListing/:mlsNumber" element={<SingleListing/>}/>
+          <Route exact path="/login" element={<Login/>}/>
+          <Route exact path="/signup" element={<Signup/>}/>
+
         </Routes>
       </BrowserRouter>
       );
