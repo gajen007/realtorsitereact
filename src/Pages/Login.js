@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 function HomePage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("");
 
   const loginFunction = (e) => {
     e.preventDefault();
     var toServer = new FormData();
     toServer.append("userName", email);
     toServer.append("passWord", password);
-    fetch("http://localhost/sms/login/temp", {
+    toServer.append("userType", userType);
+    
+    fetch("http://localhost:8000/api/login", {
       method: "POST",
       body: toServer,
       mode: "cors",
@@ -26,12 +29,17 @@ function HomePage() {
       })
       .then((data) => {
         alert(data.message);
+        if (data.result) {
+          var realtorSuit={"userName":email,"userType":userType};
+          localStorage.setItem("realtorSuit",JSON.stringify(realtorSuit));
+        }
       })
-      .catch(() => {
-        console.log("Network connection error");
-        alert("Reloading");
+      .catch((e) => {
+        console.log(e);
+        alert("CORS Error");
       });
   };
+
   return (
     <div className="container mt-5">
       <div className=" d-flex justify-content-center mt-5">
@@ -60,6 +68,12 @@ function HomePage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              &nbsp;
+              <select onChange={(e) => setUserType(e.target.value)} className="form-control">
+	              <option value="">User Type</option>
+	              <option value="realtor">Realtor</option>
+	              <option value="client">Client</option>
+              </select>
               &nbsp;
               <hr></hr>
               <div className="row">
