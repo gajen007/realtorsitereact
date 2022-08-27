@@ -96,6 +96,9 @@ function SingleListing() {
                       console.log(jsonData.mlsnumber)}
                     } className="btn btn-danger form-control mt-2" >Add to Favourites</button> */}
                   <div className="btn btn-success form-control mt-2" >Share</div>
+                  <Link to={"/inquiry/"+jsonData.mlsnumber}>
+                  <button className="btn btn-primary form-control mt-2" >Inquiry</button>
+                  </Link>
 
                 </div>
               </div>
