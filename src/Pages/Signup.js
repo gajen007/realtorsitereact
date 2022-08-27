@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 function Signup() {
+  const [password,setPassword]=useState("");
+  const [cnpassword,setCnPassword]=useState("");
   return (
     <div className="d-flex justify-content-center mt-5">
       <form id="signup">
@@ -40,15 +43,28 @@ function Signup() {
               required
               placeholder="Password"
               id="sppassword"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             &nbsp;
             <input
               type="password"
-              className="form-control-lg form-control rounded-3"
+              className={
+                ((password===cnpassword) && (password!=""))
+                ?"form-control-lg form-control rounded-3 border border-success"
+                :"form-control-lg form-control rounded-3 border border-danger"
+              }
               required
               placeholder="Confirm Password"
               id="spcpassword"
+              value={cnpassword}
+              onChange={(e) => setCnPassword(e.target.value)}
             />
+            {
+              ((password===cnpassword) && (password!=""))
+              ?""
+              :<div align="right" className="text-danger">*Password mismatch</div>
+            }
             &nbsp;
             <div className="row">
               <div className="col-12">
