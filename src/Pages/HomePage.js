@@ -2,19 +2,21 @@ import ListingGrid from '../Components/ListingGrid.js';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
+import NavBar from "./NavBar";
+
 function HomePage() {
   const [listings, setListings] = useState([]);
-  const [loading, setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
 
   const fetchFunction = async () => {
-    try{
+    try {
       await axios
-      .get('http://localhost:8000/api/allListings')
-      .then(res => {
-        setListings(res.data['listings']);
-      });
+        .get('http://localhost:8000/api/allListings')
+        .then(res => {
+          setListings(res.data['listings']);
+        });
       setLoading(true);
-    }catch(e){
+    } catch (e) {
       console.log(e);
     }
   }
@@ -33,25 +35,36 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="container mt-5">
-      {loading ? <div className="row row-cols-1 row-cols-md-3 g-4">
+    <>
+      <NavBar></NavBar>
+
+      <div className="container mt-5">
+
         {
-          listings.map((item) => {
-            return (<ListingGrid
-              key={item.mlsnumber}
-              mlsnumber={item.mlsnumber}
-              price={item.price}
-              address={item.address}
-              latitude={item.latitude}
-              longitude={item.longitude}
-              bedrooms={item.bedrooms}
-              washrooms={item.washrooms}
-            />);
-          })
+          loading ?
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+              {
+                listings.map((item) => {
+                  return (
+                    <ListingGrid
+                      key={item.mlsnumber}
+                      mlsnumber={item.mlsnumber}
+                      price={item.price}
+                      address={item.address}
+                      latitude={item.latitude}
+                      longitude={item.longitude}
+                      bedrooms={item.bedrooms}
+                      washrooms={item.washrooms}
+                    />
+                  );
+                })
+              }
+            </div>
+            : <center><Spinner animation="grow" /></center>
         }
-      </div>: <center><Spinner animation="grow" /></center>}
-      
-    </div>
+
+      </div>
+    </>
   );
 }
 

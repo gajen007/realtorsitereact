@@ -18,7 +18,7 @@ function SingleListing() {
         setJsonData(data);
       })
       .catch(() => { console.log("Network connection error"); });
-  }, [])
+  }, []);
   return (
     <React.Fragment>
       <NavBar></NavBar>
@@ -94,8 +94,10 @@ function SingleListing() {
                       var text=localStorage.getItem("likes");
                       localStorage.setItem("likes",text+","+jsonData.mlsnumber);
                       console.log(jsonData.mlsnumber)}
-                    } className="btn btn-danger form-control mt-2" >Add to Favourites</button> */}
-                  <div className="btn btn-success form-control mt-2" >Share</div>
+                    } className="btn btn-danger form-control mt-2" >Add to Favourites</button> */
+                  }
+                  
+                  <a className="btn btn-success form-control mt-2" href={"https://wa.me/?text="+window.location.href}>Share</a>
                   <Link to={"/inquiry/"+jsonData.mlsnumber}>
                   <button className="btn btn-primary form-control mt-2" >Inquiry</button>
                   </Link>
