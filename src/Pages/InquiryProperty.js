@@ -6,24 +6,23 @@ import NavBar from "./NavBar";
 import ChatGrid from "../Components/ChatGrid";
 import { useNavigate } from 'react-router-dom';
 function InquiryProperty() {
-  
-  const navigate=useNavigate();
-  useEffect(()=>{
-    if(localStorage.getItem("realtorSuit")===null){
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("realtorSuit") === null) {
       navigate("/login");
     }
-  },[]);
-  
+  }, []);
+
   const { mlsNumber } = useParams();
   const [typedText, placeChat] = useState("");
-  //const [loggedInUserName,setUserName] = useState("");
   const [chats, fillChats] = useState([]);
 
-  useEffect(() => {
-    //let realtorSuit=JSON.parse(localStorage.getItem("realtoSuit"));
-    //setUserName(realtorSuit['userName']);
+  let realtorSuit = JSON.parse(localStorage.getItem("realtorSuit"));
+  var loggedInUserName=realtorSuit['userName'];
 
-    fetch("http://localhost:8000/api/inquiryChat?mlsNumber=" + mlsNumber + "&clientUserName=ragurajsivanantham@gmail.com", {
+  useEffect(() => {
+    fetch("http://localhost:8000/api/inquiryChat?mlsNumber=" + mlsNumber + "&clientUserName="+loggedInUserName, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache'
@@ -43,7 +42,7 @@ function InquiryProperty() {
     var toServer = new FormData();
     toServer.append('mlsNumber', mlsNumber);
     toServer.append('chatMessage', typedText);
-    toServer.append('loggedInUserName', "ragurajsivanantham@gmail.com");
+    toServer.append('loggedInUserName', loggedInUserName);
     if (typedText !== null && typedText !== "") {
       fetch("http://localhost:8000/api/feedInquiryChatByClient", {
         method: 'POST',
@@ -85,7 +84,7 @@ function InquiryProperty() {
   }
   return (
     <>
-      
+
       <NavBar></NavBar>
       <div className="container mt-5">
         <div className="row">
