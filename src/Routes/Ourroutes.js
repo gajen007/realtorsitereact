@@ -5,6 +5,7 @@ import Login from '../Pages/Login.js'
 import Signup from '../Pages/Signup.js'
 import InquiryProperty from "../Pages/InquiryProperty.js";
 import UserEnquiries from "../Pages/UserEnquiries.js";
+import PropertiesMap from "../Pages/PropertiesMap.js";
 
 const Ourroutes = () => {
 
@@ -18,6 +19,7 @@ const Ourroutes = () => {
           <Route exact path="/signup" element={<Signup/>}/>
           <Route exact path="/userEnquiries" element={<UserEnquiries/>}/>
           <Route exact path="/inquiry/:mlsNumber" element={<InquiryProperty/>}/>
+          <Route exact path="/propertiesMap" element={<PropertiesMap/>}/>
 
         </Routes>
       </BrowserRouter>
