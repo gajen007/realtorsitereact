@@ -2,7 +2,6 @@ function ChatGrid(props) { //props is an object as a parameter
     var chatHistory = document.getElementById("messageBody");
     chatHistory.scrollTop = chatHistory.scrollHeight;
     return (
-        // if sender id != 1: it is sent message
         <div>
             {(props.senderID != 1) ?
                 <div className="row">

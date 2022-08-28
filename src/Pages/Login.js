@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Redirect } from 'react-router'
 function LoginPage() {
   const navigate = useNavigate();
   

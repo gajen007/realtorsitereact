@@ -17,6 +17,7 @@ function InquiryProperty() {
   const { mlsNumber } = useParams();
   const [typedText, placeChat] = useState("");
   const [chats, fillChats] = useState([]);
+  const [fetchRequestState, setFetchRequestState]=useState(1);
 
   let realtorSuit = JSON.parse(localStorage.getItem("realtorSuit"));
   var loggedInUserName=realtorSuit['userName'];
@@ -35,7 +36,7 @@ function InquiryProperty() {
 
       }).catch(err => console.error(err));
 
-  }, [typedText]);
+  }, [fetchRequestState]);
 
   const feedChat = (e) => {
     e.preventDefault();
@@ -66,7 +67,7 @@ function InquiryProperty() {
           } else {
             placeChat("");
             document.getElementById("chatBox").value = "";
-
+            setFetchRequestState(fetchRequestState+1);
           }
         })
         .catch((e) => {
@@ -78,10 +79,7 @@ function InquiryProperty() {
       alert("Type something...");
     }
   };
-  const adjustScroll = () => {
-    var chatHistory = document.getElementById("messageBody");
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-  }
+
   return (
     <>
 
@@ -112,7 +110,6 @@ function InquiryProperty() {
                 <div className="col-md-10">
                   <input id="chatBox" className="form-control" onChange={
                     (e) => placeChat(e.target.value)
-
                   } placeholder="Message"></input>
                 </div>
                 <div className="col-md-2">
