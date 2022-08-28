@@ -4,8 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import NavBar from "./NavBar";
 import ChatGrid from "../Components/ChatGrid";
-
+import { useNavigate } from 'react-router-dom';
 function InquiryProperty() {
+  
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(localStorage.getItem("realtorSuit")===null){
+      navigate("/login");
+    }
+  },[]);
+  
   const { mlsNumber } = useParams();
   const [typedText, placeChat] = useState("");
   //const [loggedInUserName,setUserName] = useState("");

@@ -1,10 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Redirect } from 'react-router'
+function LoginPage() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(localStorage.getItem("realtorSuit")!==null){
+      navigate("/home");
+    }
+  }, []);
 
-function HomePage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
+
 
   const loginFunction = (e) => {
     e.preventDefault();
@@ -12,7 +21,7 @@ function HomePage() {
     toServer.append("userName", email);
     toServer.append("passWord", password);
     toServer.append("userType", userType);
-    
+
     fetch("http://localhost:8000/api/login", {
       method: "POST",
       body: toServer,
@@ -30,8 +39,9 @@ function HomePage() {
       .then((data) => {
         alert(data.message);
         if (data.result) {
-          var realtorSuit={"userName":email,"userType":userType};
-          localStorage.setItem("realtorSuit",JSON.stringify(realtorSuit));
+          var realtorSuit = { "userName": email, "userType": userType };
+          localStorage.setItem("realtorSuit", JSON.stringify(realtorSuit));
+          navigate("/home");
         }
       })
       .catch((e) => {
@@ -70,9 +80,9 @@ function HomePage() {
               />
               &nbsp;
               <select onChange={(e) => setUserType(e.target.value)} className="form-control">
-	              <option value="">User Type</option>
-	              <option value="realtor">Realtor</option>
-	              <option value="client">Client</option>
+                <option value="">User Type</option>
+                <option value="realtor">Realtor</option>
+                <option value="client">Client</option>
               </select>
               &nbsp;
               <hr></hr>
@@ -115,4 +125,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default LoginPage;

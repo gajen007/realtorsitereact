@@ -1,11 +1,61 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 function Signup() {
-  const [password,setPassword]=useState("");
-  const [cnpassword,setCnPassword]=useState("");
+
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(localStorage.getItem("realtorSuit")!==null){
+      navigate("/home");
+    }
+  }, []);
+
+  const [password, setPassword] = useState("");
+  const [cnpassword, setCnPassword] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+
+  const signupFunction = (e) => {
+    e.preventDefault();
+    var toServer = new FormData();
+    toServer.append("firstName", fname);
+    toServer.append("lastName", lname);
+    toServer.append("userType", "client");
+    toServer.append("userName", email);
+    toServer.append("passWord", password);
+    toServer.append("mobileNumber", phone);
+
+    fetch("http://localhost:8000/api/signup", {
+      method: "POST",
+      body: toServer,
+      mode: "cors",
+      cache: "no-cache",
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          alert("Backend Error..!");
+          console.log(response.text());
+        }
+      })
+      .then((data) => {
+        alert(data.message);
+        if(data.message=="Sign-up Succeeded..!"){
+          navigate("/login");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("CORS Error");
+      });
+  };
   return (
-    <div className="d-flex justify-content-center mt-5">
-      <form id="signup">
+    <div className="d-flex justify-content-center mt-5 mb-3">
+      <form id="signup" onSubmit={signupFunction}>
         <div className="card border-dark ">
           <div className="card-header form-control-lg">
             <strong>
@@ -18,7 +68,8 @@ function Signup() {
               className="form-control-lg form-control rounded-3"
               required
               placeholder="First Name"
-              id="spfname"
+              value={fname}
+              onChange={(e) => setFname(e.target.value)}
             />
             &nbsp;
             <input
@@ -26,7 +77,8 @@ function Signup() {
               className="form-control-lg form-control rounded-3"
               required
               placeholder="Late Name"
-              id="splname"
+              value={lname}
+              onChange={(e) => setLname(e.target.value)}
             />
             &nbsp;
             <input
@@ -34,7 +86,16 @@ function Signup() {
               className="form-control-lg form-control rounded-3"
               required
               placeholder="Email"
-              id="spemail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />&nbsp;
+            <input
+              type="number"
+              className="form-control-lg form-control rounded-3"
+              required
+              placeholder="Phone Number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
             &nbsp;
             <input
@@ -42,7 +103,6 @@ function Signup() {
               className="form-control-lg form-control rounded-3"
               required
               placeholder="Password"
-              id="sppassword"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -50,9 +110,9 @@ function Signup() {
             <input
               type="password"
               className={
-                ((password===cnpassword) && (password!=""))
-                ?"form-control-lg form-control rounded-3 border border-success"
-                :"form-control-lg form-control rounded-3 border border-danger"
+                ((password === cnpassword) && (password != ""))
+                  ? "form-control-lg form-control rounded-3 border border-success"
+                  : "form-control-lg form-control rounded-3 border border-danger"
               }
               required
               placeholder="Confirm Password"
@@ -61,29 +121,15 @@ function Signup() {
               onChange={(e) => setCnPassword(e.target.value)}
             />
             {
-              ((password===cnpassword) && (password!=""))
-              ?""
-              :<div align="right" className="text-danger">*Password mismatch</div>
+              ((password === cnpassword) && (password != ""))
+                ? ""
+                : <div align="right" className="text-danger">*Password mismatch</div>
             }
             &nbsp;
             <div className="row">
-              <div className="col-12">
-                <div className="form-control form-control-lg">
-                  <input
-                    type="checkbox"
-                    id="spagree"
-                    className="form-check-input"
-                    required
-                  />
-
-                  &nbsp; I agree Terms and Conditions
-                </div>
-                &nbsp;<hr></hr>
-              </div>
-            </div>
-            <div className="row">
               <div className="col-6">
                 <button
+                  disabled={(password === cnpassword) ? false : true}
                   type="submit"
                   className="btn btn-outline-success btn-lg form-control"
                 >

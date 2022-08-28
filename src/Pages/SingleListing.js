@@ -1,9 +1,16 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import sampleMap from "../Images/map.png";
 import NavBar from "./NavBar";
+import { useNavigate } from 'react-router-dom';
+
 function SingleListing() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("realtorSuit") === null) {
+      navigate("/login");
+    }
+  }, []);
   // localStorage.setItem("likes","");
   const { mlsNumber } = useParams();
   const [jsonData, setJsonData] = useState({});
@@ -96,10 +103,10 @@ function SingleListing() {
                       console.log(jsonData.mlsnumber)}
                     } className="btn btn-danger form-control mt-2" >Add to Favourites</button> */
                   }
-                  
-                  <a className="btn btn-success form-control mt-2" href={"https://wa.me/?text="+window.location.href}>Share</a>
-                  <Link to={"/inquiry/"+jsonData.mlsnumber}>
-                  <button className="btn btn-primary form-control mt-2" >Enquiry</button>
+
+                  <a className="btn btn-success form-control mt-2" href={"https://wa.me/?text=" + window.location.href}>Share</a>
+                  <Link to={"/inquiry/" + jsonData.mlsnumber}>
+                    <button className="btn btn-primary form-control mt-2" >Enquiry</button>
                   </Link>
 
                 </div>

@@ -3,8 +3,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
 import NavBar from "./NavBar";
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
+  const navigate=useNavigate();
+  useEffect(()=>{
+    if(localStorage.getItem("realtorSuit")===null){
+      navigate("/login");
+    }
+  },[]);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(false);
 
