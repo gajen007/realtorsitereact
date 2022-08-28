@@ -99,7 +99,7 @@ function SingleListing() {
                   
                   <a className="btn btn-success form-control mt-2" href={"https://wa.me/?text="+window.location.href}>Share</a>
                   <Link to={"/inquiry/"+jsonData.mlsnumber}>
-                  <button className="btn btn-primary form-control mt-2" >Inquiry</button>
+                  <button className="btn btn-primary form-control mt-2" >Enquiry</button>
                   </Link>
 
                 </div>
