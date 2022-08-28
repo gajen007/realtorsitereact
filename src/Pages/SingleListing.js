@@ -30,7 +30,7 @@ function SingleListing() {
                 {"MLS Number : " + jsonData.mlsnumber}
               </div>
               <div className="col-md-4 mt-2">
-                <Link to="/"><div className="btn btn-primary form-control">Home</div></Link>
+                <Link to="/home"><div className="btn btn-primary form-control">Home</div></Link>
               </div>
             </div>
 

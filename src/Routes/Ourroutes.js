@@ -10,8 +10,9 @@ const Ourroutes = () => {
     return (
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<HomePage/>}/>
-          <Route exact path="singleListing/:mlsNumber" element={<SingleListing/>}/>
+          <Route exact path="/" element={<Login/>}/>
+          <Route exact path="/home" element={<HomePage/>}/>
+          <Route exact path="/singleListing/:mlsNumber" element={<SingleListing/>}/>
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/signup" element={<Signup/>}/>
           <Route exact path="/inquiry/:mlsNumber" element={<InquiryProperty/>}/>
