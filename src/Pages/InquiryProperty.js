@@ -15,7 +15,7 @@ function InquiryProperty() {
     //let realtorSuit=JSON.parse(localStorage.getItem("realtoSuit"));
     //setUserName(realtorSuit['userName']);
 
-    fetch("http://localhost:8000/api/inquiryChat?mlsNumber=" + mlsNumber + "&clientUserName=ragu@mail.com", {
+    fetch("http://localhost:8000/api/inquiryChat?mlsNumber=" + mlsNumber + "&clientUserName=ragurajsivanantham@gmail.com", {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache'
@@ -35,7 +35,7 @@ function InquiryProperty() {
     var toServer = new FormData();
     toServer.append('mlsNumber', mlsNumber);
     toServer.append('chatMessage', typedText);
-    toServer.append('loggedInUserName', "ragu@mail.com");
+    toServer.append('loggedInUserName', "ragurajsivanantham@gmail.com");
     if (typedText !== null && typedText !== "") {
       fetch("http://localhost:8000/api/feedInquiryChatByClient", {
         method: 'POST',
