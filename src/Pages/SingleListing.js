@@ -97,9 +97,13 @@ function SingleListing() {
                   </table>
                   <div style={{ "overflow": "auto", "height": "40vh" }}>
                     {
-                      useEffect(() => {
-                        
-                      }, [])
+                      (jsonData.latitude) ? <MapV2
+                        latitude={jsonData.latitude}
+                        longitude={jsonData.longitude}
+                        text={jsonData.address}
+                      ></MapV2>
+                        :
+                        "Loading..."
                     }
                   </div>
                   <div className="btn btn-warning form-control mt-2" >Request</div>
