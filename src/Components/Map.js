@@ -3,7 +3,10 @@ import L from 'leaflet/dist/leaflet';
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useEffect } from "react";
+
+// Sample
 // http://localhost:3000/singleMap/6.9270786/79.861243/Raguraj
+
 function Map(){
     const{latitude,longitude,text}=useParams();
     let DefaultIcon = L.icon({ iconUrl: icon, shadowUrl: iconShadow, });

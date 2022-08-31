@@ -4,6 +4,16 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useEffect } from "react";
 
+// Sample
+
+// (jsonData.latitude) ? <MapV2
+// latitude={jsonData.latitude}
+// longitude={jsonData.longitude}
+// text={jsonData.address}
+// ></MapV2>
+// :
+// "Loading..."
+
 function MapV2(props){
     var latitude=props.latitude;
     var longitude=props.longitude;
@@ -12,7 +22,7 @@ function MapV2(props){
     useEffect(() => {
         var container = L.DomUtil.get("myMap");
         if (container != null) { container._leaflet_id = null; }
-        var map = L.map("myMap").setView([latitude,longitude],12);
+        var map = L.map("myMap").setView([latitude,longitude],9);
         L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
         {
             attribution:'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
