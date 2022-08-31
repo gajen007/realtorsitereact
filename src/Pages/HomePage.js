@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
 import NavBar from "./NavBar";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function HomePage() {
-  const navigate=useNavigate();
-  useEffect(()=>{
-    if(localStorage.getItem("realtorSuit")===null){
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("realtorSuit") === null) {
       navigate("/login");
     }
-  },[]);
+  }, []);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -44,32 +44,43 @@ function HomePage() {
   return (
     <>
       <NavBar></NavBar>
-
       <div className="container mt-5">
-
-        {
-          loading ?
-            <div className="row row-cols-1 row-cols-md-3 g-4">
-              {
-                listings.map((item) => {
-                  return (
-                    <ListingGrid
-                      key={item.mlsnumber}
-                      mlsnumber={item.mlsnumber}
-                      price={item.price}
-                      address={item.address}
-                      latitude={item.latitude}
-                      longitude={item.longitude}
-                      bedrooms={item.bedrooms}
-                      washrooms={item.washrooms}
-                    />
-                  );
-                })
-              }
-            </div>
-            : <center><Spinner animation="grow" /></center>
-        }
-
+        <div className="card text-center">
+          <div className="card-header">
+            <ul className="nav nav-tabs card-header-tabs">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="true" href="#">Grid View</a>
+              </li>
+              <li className="nav-item">
+                <Link to="/propertiesmap"><div className="nav-link">Map View</div></Link>
+              </li>
+            </ul>
+          </div>
+          <div className="card-body">
+            {
+              loading ?
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                  {
+                    listings.map((item) => {
+                      return (
+                        <ListingGrid
+                          key={item.mlsnumber}
+                          mlsnumber={item.mlsnumber}
+                          price={item.price}
+                          address={item.address}
+                          latitude={item.latitude}
+                          longitude={item.longitude}
+                          bedrooms={item.bedrooms}
+                          washrooms={item.washrooms}
+                        />
+                      );
+                    })
+                  }
+                </div>
+                : <center><Spinner animation="grow" /></center>
+            }
+          </div>
+        </div>
       </div>
     </>
   );

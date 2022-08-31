@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import sampleMap from "../Images/map.png";
 import NavBar from "./NavBar";
 import { useNavigate } from 'react-router-dom';
+import MapV2 from "../Components/MapV2";
 
 function SingleListing() {
   const navigate = useNavigate();
@@ -94,7 +95,13 @@ function SingleListing() {
                       </tr>
                     </tbody>
                   </table>
-                  <div style={{ "overflow": "auto", "height": "40vh" }}><img src={sampleMap} className="d-block" alt="..." /></div>
+                  <div style={{ "overflow": "auto", "height": "40vh" }}>
+                    {
+                      useEffect(() => {
+                        
+                      }, [])
+                    }
+                  </div>
                   <div className="btn btn-warning form-control mt-2" >Request</div>
                   {/* <button onClick={
                     ()=>{
