@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faRightFromBracket, faComments, faHome } from '@fortawesome/free-solid-svg-icons'
+// import MapV2 from "../Components/MapV2";
 
 function NavBar() {
     const navigate = useNavigate();
@@ -10,6 +11,11 @@ function NavBar() {
     }
     return (
         <>
+            {/* <MapV2
+                latitude={6.9270786}
+                longitude={79.861243}
+                text={"Raguraj"}
+            ></MapV2> */}
             <nav className="navbar navbar-expand-lg bg-dark">
                 <div className="container-fluid">
                     <Link to="/home"><div className="navbar-brand text-white btn border border-dark"><FontAwesomeIcon icon={faHome} /></div></Link>
