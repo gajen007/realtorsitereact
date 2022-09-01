@@ -52,7 +52,7 @@ function HomePage() {
                 <a className="nav-link active" aria-current="true" href="#">Grid View</a>
               </li>
               <li className="nav-item">
-                <Link to="/propertiesmap"><div className="nav-link">Map View</div></Link>
+                <Link to="/mapview"><div className="nav-link">Map View</div></Link>
               </li>
             </ul>
           </div>

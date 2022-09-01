@@ -4,7 +4,7 @@ import sampleMap from "../Images/map.png";
 import NavBar from "./NavBar";
 import { useNavigate } from 'react-router-dom';
 import MapV2 from "../Components/MapV2";
-
+import Spinner from 'react-bootstrap/Spinner';
 function SingleListing() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -103,7 +103,7 @@ function SingleListing() {
                         text={jsonData.address}
                       ></MapV2>
                         :
-                        "Loading..."
+                        <center><Spinner animation="grow" /></center>
                     }
                   </div>
                   <div className="btn btn-warning form-control mt-2" >Request</div>
