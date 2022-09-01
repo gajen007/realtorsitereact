@@ -36,14 +36,9 @@ function PropertiesMap() {
             accessToken:"pk.eyJ1IjoidGFyLWhlbCIsImEiOiJjbDJnYWRieGMwMTlrM2luenIzMzZwbGJ2In0.RQRMAJqClc4qoNwROT8Umg",
         }
         ).addTo(map);
-
-        
-        //L.Marker.prototype.options.icon = DefaultIcon;
-        //var marker = L.marker([43.8078538,-79.2563908]).addTo(map);
-        //marker.bindPopup("<b>Gajen's Home!</b>").openPopup();
-
-
-
+        L.Marker.prototype.options.icon = DefaultIcon;
+        var marker = L.marker([43.8078538,-79.2563908]).addTo(map);
+        marker.bindPopup("<b>Gajen's Home!</b>").openPopup();
     }, []);
     return (<><NavBar></NavBar><div id="myMap" style={{ height: "100vh" }}></div></>);
 
