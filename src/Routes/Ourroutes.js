@@ -8,29 +8,35 @@ import UserEnquiries from "../Pages/UserEnquiries.js";
 import PropertiesMap from "../Pages/PropertiesMap.js";
 import Map from "../Components/Map.js";
 import MapView from "../Pages/MapView.js";
-
+import React from "react";
 const Ourroutes = () => {
-
-    return (
+  const protect=(element)=>{
+    if(localStorage.getItem("realtorSuit")){
+      return element
+    }else{
+      return <Login/>
+    }
+  }
+  return (
+    <React.Fragment>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Login/>}/>
-          <Route exact path="/home" element={<HomePage/>}/>
-          <Route exact path="/singleListing/:mlsNumber" element={<SingleListing/>}/>
-          <Route exact path="/login" element={<Login/>}/>
-          <Route exact path="/signup" element={<Signup/>}/>
-          <Route exact path="/userEnquiries" element={<UserEnquiries/>}/>
-          <Route exact path="/inquiry/:mlsNumber" element={<InquiryProperty/>}/>
-          <Route exact path="/propertiesMap" element={<PropertiesMap/>}/>
-          <Route exact path="/singleMap/:latitude/:longitude/:text" element={<Map/>}/>
-          <Route exact path="/mapview" element={<MapView></MapView>}/>
-
-
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/home" element={protect(<HomePage />)} />
+          <Route exact path="/singleListing/:mlsNumber" element={protect(<SingleListing />)} />
+          <Route exact path="/inquiry/:mlsNumber" element={protect(<InquiryProperty />)} />
+          <Route exact path="/propertiesMap" element={protect(<PropertiesMap />)} />
+          <Route exact path="/singleMap/:latitude/:longitude/:text" element={protect(<Map />)} />
+          <Route exact path="/mapview" element={protect(<MapView></MapView>)} />
+          <Route exact path="/userEnquiries" element={protect(<UserEnquiries />)} />
+          
         </Routes>
       </BrowserRouter>
-      );
 
-      //Need to study the "routing parameters"
+    </React.Fragment>
+  );
 }
 
 export default Ourroutes;

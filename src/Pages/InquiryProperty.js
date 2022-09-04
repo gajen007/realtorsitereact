@@ -8,11 +8,6 @@ import { useNavigate } from 'react-router-dom';
 function InquiryProperty() {
 
   const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("realtorSuit") === null) {
-      navigate("/login");
-    }
-  }, []);
 
   const { mlsNumber } = useParams();
   const [typedText, placeChat] = useState("");

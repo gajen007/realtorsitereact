@@ -7,11 +7,6 @@ import MapV2 from "../Components/MapV2";
 import Spinner from 'react-bootstrap/Spinner';
 function SingleListing() {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("realtorSuit") === null) {
-      navigate("/login");
-    }
-  }, []);
   // localStorage.setItem("likes","");
   const { mlsNumber } = useParams();
   const [jsonData, setJsonData] = useState({});
