@@ -7,11 +7,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("realtorSuit") === null) {
-      navigate("/login");
-    }
-  }, []);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +33,6 @@ function HomePage() {
     //   .then(data => {
     //     setListings(data['listings']);
     //   }).catch(err => console.error(err));
-
   }, []);
 
   return (

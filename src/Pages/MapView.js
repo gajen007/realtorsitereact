@@ -6,7 +6,9 @@ import axios from "axios";
 import L from 'leaflet/dist/leaflet';
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import { Link, useNavigate } from 'react-router-dom';
 function MapView() {
+    const navigate = useNavigate();
     //List Fetch Function
     const [listings, setListings] = useState([]);
     const [loading, setLoading] = useState(false);

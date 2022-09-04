@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faRightFromBracket, faComments, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faRightFromBracket, faComments, faHome, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 // import MapV2 from "../Components/MapV2";
 
 function NavBar() {
     const navigate = useNavigate();
     const logoutFunction = () => {
         localStorage.clear();
-        navigate("/login");
+        navigate("/");
     }
     return (
         <>
@@ -52,7 +52,16 @@ function NavBar() {
                                 <button className="btn btn-outline-success" type="submit">Search</button>
                         </form> */}
                         <div className="ml-auto btn btn-outline-danger border-dark"><FontAwesomeIcon icon={faHeart} /></div>
-                        <button onClick={logoutFunction} className="ml-auto btn btn-outline-warning border-dark"><FontAwesomeIcon icon={faRightFromBracket} /></button>
+                        {
+                            (localStorage.getItem("realtorSuit"))
+                                ?
+                                <button onClick={logoutFunction} className="ml-auto btn btn-outline-warning border-dark"><FontAwesomeIcon icon={faRightFromBracket} /></button>
+                                :
+                                <Link to="/login">
+                                    <div className="ml-auto btn btn-primary border-dark align-items-center"><FontAwesomeIcon icon={faRightToBracket} /> Login</div>
+                                </Link>
+                        }
+
                     </div>
                 </div>
             </nav>

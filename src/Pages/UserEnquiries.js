@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
-
+import { Link } from 'react-router-dom';
 function UserEnquiries() {
     const [chats, fillChats] = useState([]);
     let realtorSuit = JSON.parse(localStorage.getItem("realtorSuit"));
