@@ -3,7 +3,7 @@ function ChatGrid(props) { //props is an object as a parameter
     chatHistory.scrollTop = chatHistory.scrollHeight;
     return (
         <div>
-            {(props.senderID != 1) ?
+            {(props.senderID !== 1) ?
                 <div className="row">
                     <div className="col-md-6"></div>
                     <div className="col-md-6">
