@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from 'react-bootstrap/Spinner';
 import NavBar from "./NavBar";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
-  const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -53,7 +52,7 @@ function HomePage() {
           <div className="card-body">
             {
               loading ?
-                <div className="row row-cols-1 row-cols-md-3 g-4">
+                <div className="row row-cols-1 row-cols-md-4 g-4">
                   {
                     listings.map((item) => {
                       return (

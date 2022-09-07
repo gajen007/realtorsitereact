@@ -9,6 +9,7 @@ import PropertiesMap from "../Pages/PropertiesMap.js";
 import Map from "../Components/Map.js";
 import MapView from "../Pages/MapView.js";
 import React from "react";
+import Favourite from "../Pages/Favourite.js";
 const Ourroutes = () => {
   const protect=(element)=>{
     if(localStorage.getItem("realtorSuit")){
@@ -31,6 +32,7 @@ const Ourroutes = () => {
           <Route exact path="/singleMap/:latitude/:longitude/:text" element={protect(<Map />)} />
           <Route exact path="/mapview" element={protect(<MapView></MapView>)} />
           <Route exact path="/userEnquiries" element={protect(<UserEnquiries />)} />
+          <Route exact path="/favourites" element={protect(<Favourite/>)} />
           
         </Routes>
       </BrowserRouter>

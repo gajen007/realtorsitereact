@@ -4,9 +4,37 @@ import { Link } from "react-router-dom";
 // npm install --save @fortawesome/react-fontawesome
 // and use 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapLocationDot, faBed, faBath, faDollarSign, faComment, faMagnifyingGlassLocation } from '@fortawesome/free-solid-svg-icons'
+import { faMapLocationDot, faBed, faBath, faDollarSign, faComment, faMagnifyingGlassLocation, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useState } from "react";
+import NavBar from "../Pages/NavBar";
 
 function ListingGrid(props) { //props is an object as a parameter
+    const [favMessage,addFavMessage]=useState("Add");
+    
+    // show added text when page loads
+    useEffect(()=>{
+        var favVal=JSON.parse(localStorage.getItem("favData"));
+        if(favVal["fav"].includes(props.mlsnumber)){
+            addFavMessage("Added");
+        }
+    },[]);
+
+    const addToFavourite=()=>{
+        var favVal=JSON.parse(localStorage.getItem("favData"));
+        if(favVal["fav"].includes(props.mlsnumber)){
+            var index = favVal["fav"].indexOf(props.mlsnumber);
+            if (index !== -1) {
+                favVal["fav"].splice(index, 1);
+            }
+            addFavMessage("Add");
+            localStorage.setItem("favData",JSON.stringify(favVal));
+        }else{
+            favVal["fav"].push(props.mlsnumber);
+            addFavMessage("Added");
+            localStorage.setItem("favData",JSON.stringify(favVal));
+        }
+        
+    }
     return (
         <div className="col">
 
@@ -36,76 +64,34 @@ function ListingGrid(props) { //props is an object as a parameter
                         </div>
                         <div className="col-md-10">{props.price}</div>
                     </div>
-
-
-                    {/* Design 2 */}
-                    {/* <table class="table table-hover table-bordered">
-                        <tbody>
-                            <tr className="table-success">
-                                <td scope="row"><i class="fa-solid fa-map-location-dot"></i> &nbsp; Address</td>
-                                <td>
-                                    <a href={"https://www.google.com/maps/search/?api=1&query=" + props.latitude + "%2C" + props.longitude} target="_blank">{props.address}</a>
-                                </td>
-                            </tr>
-                            <tr className="table-info">
-                                <td scope="row"><i class="fa-solid fa-bed"></i> &nbsp; Bed Rooms</td>
-                                <td>{props.bedrooms + " Rooms"}</td>
-                            </tr>
-                            <tr className="table-success">
-                                <td scope="row"><i class="fa-solid fa-bath"> &nbsp; </i>Wash Rooms</td>
-                                <td>{props.washrooms + " Rooms"}</td>
-                            </tr>
-                            <tr className="table-info">
-                                <td scope="row"><i class="fa-solid fa-dollar-sign"></i>&nbsp;Price</td>
-                                <td>{props.price}</td>
-                            </tr>
-                        </tbody>
-                    </table> */}
-
-                    {/* Design 3 */}
-                    {/* <div className="row">
-                        <div className="col-md-5">
-                            <i class="fa-solid fa-map-location-dot"></i> &nbsp;Address&nbsp;:
-                        </div>
-                        <div className="col-md-7">
-                            <a href={"https://www.google.com/maps/search/?api=1&query=" + props.latitude + "%2C" + props.longitude} target="_blank">{props.address}</a>
-                        </div>
-                    </div>
-                    
-                    
-                    <p></p>
-                
-                    <i class="fa-solid fa-bed"></i> &nbsp; Bed Rooms&nbsp;:&nbsp;
-                    {props.bedrooms + " Rooms"}
-                    <p></p>
-                
-                    <i class="fa-solid fa-bath"> &nbsp; </i>Wash Rooms&nbsp;:&nbsp;
-                    {props.washrooms + " Rooms"}
-                    <p></p>
-                
-                    <i class="fa-solid fa-dollar-sign"></i>&nbsp;Price&nbsp;:&nbsp;
-                    {props.price} */}
-                    {/* Design 3 end*/}
-
                 </div>
                 <div className="card-footer">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-md-12 mt-1">
                             <Link to={"/inquiry/" + props.mlsnumber}>
                                 <div className="btn btn-outline-primary form-control">
                                     <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>&nbsp;
                                     Enquiry
                                 </div>
                             </Link>
-
                         </div>
-                        <div className="col">
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 mt-1">
                             <Link to={"/singleListing/" + props.mlsnumber}>
                                 <div className="btn btn-outline-success form-control">
                                     <FontAwesomeIcon icon={faMagnifyingGlassLocation}></FontAwesomeIcon>&nbsp;
                                     Show
                                 </div>
                             </Link>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 mt-1">
+                            <button className="btn btn-outline-danger form-control" onClick={addToFavourite}>
+                                <FontAwesomeIcon icon={faHeart} />&nbsp;
+                                {favMessage}
+                            </button>
                         </div>
                     </div>
                 </div>

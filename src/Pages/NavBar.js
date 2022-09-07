@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faRightFromBracket, faComments, faHome, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+// import { useState } from "react";
 // import MapV2 from "../Components/MapV2";
 
 function NavBar() {
@@ -8,6 +9,14 @@ function NavBar() {
     const logoutFunction = () => {
         localStorage.clear();
         navigate("/");
+    }
+    // const [favourite, setFavourite]=useState(0);
+    var count=0;
+    var fav={"fav":[]};
+    if(localStorage.getItem("favData")){
+        count=JSON.parse(localStorage.getItem("favData"))["fav"].length;
+    }else{
+        localStorage.setItem("favData",JSON.stringify(fav));
     }
     return (
         <>
@@ -51,7 +60,9 @@ function NavBar() {
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button className="btn btn-outline-success" type="submit">Search</button>
                         </form> */}
-                        <div className="ml-auto btn btn-outline-danger border-dark"><FontAwesomeIcon icon={faHeart} /></div>
+                        <Link to="/favourites">
+                        <div className="ml-auto btn btn-outline-danger border-dark"><FontAwesomeIcon icon={faHeart} />&nbsp;{count}</div>
+                        </Link>
                         {
                             (localStorage.getItem("realtorSuit"))
                                 ?
