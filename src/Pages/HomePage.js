@@ -38,42 +38,40 @@ function HomePage() {
     <>
       <NavBar></NavBar>
       <div className="container mt-5">
-        <div className="card text-center">
-          <div className="card-header">
-            <ul className="nav nav-tabs card-header-tabs">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="true" href="#">Grid View</a>
-              </li>
-              <li className="nav-item">
-                <Link to="/mapview"><div className="nav-link">Map View</div></Link>
-              </li>
-            </ul>
+        <div className="row">
+          <div className='col-md-6'>
+          <Link to="/home"><div className='btn btn-outline-primary d-block'>Grid View</div></Link>
           </div>
-          <div className="card-body">
-            {
-              loading ?
-                <div className="row row-cols-1 row-cols-md-4 g-4">
-                  {
-                    listings.map((item) => {
-                      return (
-                        <ListingGrid
-                          key={item.mlsnumber}
-                          mlsnumber={item.mlsnumber}
-                          price={item.price}
-                          address={item.address}
-                          latitude={item.latitude}
-                          longitude={item.longitude}
-                          bedrooms={item.bedrooms}
-                          washrooms={item.washrooms}
-                        />
-                      );
-                    })
-                  }
-                </div>
-                : <center><Spinner animation="grow" /></center>
-            }
+          <div className='col-md-6'>
+            <Link to="/mapview"><div className='btn btn-outline-primary d-block'>Map View</div></Link>
           </div>
         </div>
+
+        <div className='mt-3'>
+          {
+            loading ?
+              <div className="row row-cols-1 row-cols-md-3 g-4">
+                {
+                  listings.map((item) => {
+                    return (
+                      <ListingGrid
+                        key={item.mlsnumber}
+                        mlsnumber={item.mlsnumber}
+                        price={item.price}
+                        address={item.address}
+                        latitude={item.latitude}
+                        longitude={item.longitude}
+                        bedrooms={item.bedrooms}
+                        washrooms={item.washrooms}
+                      />
+                    );
+                  })
+                }
+              </div>
+              : <center><Spinner animation="grow" /></center>
+          }
+        </div>
+
       </div>
     </>
   );

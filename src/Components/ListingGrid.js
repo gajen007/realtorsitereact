@@ -38,7 +38,7 @@ function ListingGrid(props) { //props is an object as a parameter
     return (
         <div className="col">
 
-            <div className="card">
+            <div className="card shadow-lg">
                 <div className="card-header bg-dark text-white text-center fw-bolder">{"MLS Number : " + props.mlsnumber}</div>
                 {/* <img src={propertyImage} className="card-img-top" alt="property-image"></img> */}
                 <div className="card-body ">
@@ -69,7 +69,7 @@ function ListingGrid(props) { //props is an object as a parameter
                     <div className="row">
                         <div className="col-md-12 mt-1">
                             <Link to={"/inquiry/" + props.mlsnumber}>
-                                <div className="btn btn-outline-primary form-control">
+                                <div className="shadow-sm btn btn-outline-primary form-control">
                                     <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>&nbsp;
                                     Enquiry
                                 </div>
@@ -79,7 +79,7 @@ function ListingGrid(props) { //props is an object as a parameter
                     <div className="row">
                         <div className="col-md-12 mt-1">
                             <Link to={"/singleListing/" + props.mlsnumber}>
-                                <div className="btn btn-outline-success form-control">
+                                <div className="shadow-sm btn btn-outline-success form-control">
                                     <FontAwesomeIcon icon={faMagnifyingGlassLocation}></FontAwesomeIcon>&nbsp;
                                     Show
                                 </div>
@@ -88,7 +88,7 @@ function ListingGrid(props) { //props is an object as a parameter
                     </div>
                     <div className="row">
                         <div className="col-md-12 mt-1">
-                            <button className="btn btn-outline-danger form-control" onClick={addToFavourite}>
+                            <button className="shadow-sm btn btn-outline-danger form-control" onClick={addToFavourite}>
                                 <FontAwesomeIcon icon={faHeart} />&nbsp;
                                 {favMessage}
                             </button>
