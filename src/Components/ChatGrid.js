@@ -3,13 +3,14 @@ function ChatGrid(props) { //props is an object as a parameter
     chatHistory.scrollTop = chatHistory.scrollHeight;
     return (
         <div>
-            {(props.senderID !== 1) ?
+            {(props.senderID != "1") ?
                 <div className="row">
                     <div className="col-md-6"></div>
                     <div className="col-md-6">
                         <div>
-                            <div className="alert alert-info">{props.chatMessage}</div>
-                            {/* <label>{props.sentTime}</label> */}
+                            <div className="alert alert-info">{props.chatMessage}<br/>
+                            <sub><i>{new Date(props.sentTime).toLocaleString()}</i></sub>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -17,8 +18,9 @@ function ChatGrid(props) { //props is an object as a parameter
                 <div className="row">
                     <div className="col-md-6">
                         <div>
-                            <div className="alert alert-warning">{props.chatMessage}</div>
-                            {/* <label>{props.sentTime}</label> */}
+                            <div className="alert alert-warning">{props.chatMessage}<br/>
+                            <sub><i>{new Date(props.sentTime).toLocaleString()}</i></sub>
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6"></div>

@@ -20,7 +20,7 @@ function LoginPage() {
     toServer.append("passWord", password);
     toServer.append("userType", userType);
 
-    fetch("http://localhost:8000/api/login", {
+    fetch("https://realtorsuit.artsuit.ca/public/api/login", {
       method: "POST",
       body: toServer,
       mode: "cors",

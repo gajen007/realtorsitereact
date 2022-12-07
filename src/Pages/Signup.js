@@ -22,7 +22,7 @@ function Signup() {
     toServer.append("passWord", password);
     toServer.append("mobileNumber", phone);
 
-    fetch("http://localhost:8000/api/signup", {
+    fetch("https://realtorsuit.artsuit.ca/public/api/signup", {
       method: "POST",
       body: toServer,
       mode: "cors",

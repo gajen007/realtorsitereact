@@ -18,7 +18,7 @@ function InquiryProperty() {
   var loggedInUserName=realtorSuit['userName'];
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/inquiryChat?mlsNumber=" + mlsNumber + "&clientUserName="+loggedInUserName, {
+    fetch("https://realtorsuit.artsuit.ca/public/api/inquiryChat?mlsNumber=" + mlsNumber + "&clientUserName="+loggedInUserName, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-cache'
@@ -40,7 +40,7 @@ function InquiryProperty() {
     toServer.append('chatMessage', typedText);
     toServer.append('loggedInUserName', loggedInUserName);
     if (typedText !== null && typedText !== "") {
-      fetch("http://localhost:8000/api/feedInquiryChatByClient", {
+      fetch("https://realtorsuit.artsuit.ca/public/api/feedInquiryChatByClient", {
         method: 'POST',
         body: toServer,
         mode: 'cors',

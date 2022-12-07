@@ -37,7 +37,6 @@ function ListingGrid(props) { //props is an object as a parameter
     }
     return (
         <div className="col">
-
             <div className="card shadow-lg">
                 <div className="card-header bg-dark text-white text-center fw-bolder">{"MLS Number : " + props.mlsnumber}</div>
                 {/* <img src={propertyImage} className="card-img-top" alt="property-image"></img> */}
@@ -84,14 +83,6 @@ function ListingGrid(props) { //props is an object as a parameter
                                     Show
                                 </div>
                             </Link>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 mt-1">
-                            <button className="shadow-sm btn btn-outline-danger form-control" onClick={addToFavourite}>
-                                <FontAwesomeIcon icon={faHeart} />&nbsp;
-                                {favMessage}
-                            </button>
                         </div>
                     </div>
                 </div>

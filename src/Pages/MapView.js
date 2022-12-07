@@ -18,7 +18,7 @@ function MapView() {
     const fetchFunction = async () => {
         try {
             await axios
-                .get('http://localhost:8000/api/allListings')
+                .get('https://realtorsuit.artsuit.ca/public/api/allListings')
                 .then(res => {
                     setListings(res.data['listings']);
                 });
@@ -43,16 +43,7 @@ function MapView() {
             var container = L.DomUtil.get("myMap");
             if (container != null) { container._leaflet_id = null; } //Unknown...?
             var map = L.map("myMap").setView([43.8078538, -79.2563908], 10);
-            L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-                {
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    maxZoom: 18,
-                    id: "mapbox/streets-v11",
-                    tileSize: 512,
-                    zoomOffset: -1,
-                    accessToken: "pk.eyJ1IjoidGFyLWhlbCIsImEiOiJjbDJnYWRieGMwMTlrM2luenIzMzZwbGJ2In0.RQRMAJqClc4qoNwROT8Umg",
-                }
-            ).addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ maxZoom:15}).addTo(map);
             listings.forEach((e) => {
                 L.Marker.prototype.options.icon = DefaultIcon;
                 var marker = L.marker([e.latitude, e.longitude]).addTo(map);
@@ -66,10 +57,14 @@ function MapView() {
             <NavBar></NavBar>
             <div className="container mt-3">
                 <div className="row">
+                    <div className='col-md-12 btn btn-outline-warning d-block'>
+                        <Link to="/home">Grid View</Link>
+                    </div>
+                </div>
+                <div className="row">
                     <div className="col-md-3" style={{ "height": "86vh", "overflow": "auto" }}>
                         {
                             loading ?
-
                                 listings.map((item) => {
                                     return (
                                         <ListingGrid

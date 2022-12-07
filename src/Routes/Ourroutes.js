@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from '../Pages/HomePage.js'
 import SingleListing from '../Pages/SingleListing.js'
+import SingleShowing from '../Pages/SingleShowing.js'
 import Login from '../Pages/Login.js'
 import Signup from '../Pages/Signup.js'
 import InquiryProperty from "../Pages/InquiryProperty.js";
@@ -27,6 +28,7 @@ const Ourroutes = () => {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/home" element={protect(<HomePage />)} />
           <Route exact path="/singleListing/:mlsNumber" element={protect(<SingleListing />)} />
+          <Route exact path="/singleShowing/:showingID" element={protect(<SingleShowing />)} />
           <Route exact path="/inquiry/:mlsNumber" element={protect(<InquiryProperty />)} />
           <Route exact path="/propertiesMap" element={protect(<PropertiesMap />)} />
           <Route exact path="/singleMap/:latitude/:longitude/:text" element={protect(<Map />)} />

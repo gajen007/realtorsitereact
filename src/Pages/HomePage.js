@@ -12,7 +12,7 @@ function HomePage() {
   const fetchFunction = async () => {
     try {
       await axios
-        .get('http://localhost:8000/api/allListings')
+        .get('https://realtorsuit.artsuit.ca/public/api/allListings')
         .then(res => {
           setListings(res.data['listings']);
         });
@@ -23,7 +23,7 @@ function HomePage() {
   }
   useEffect(() => {
     fetchFunction();
-    // fetch('http://localhost:8000/api/allListings', {
+    // fetch('https://realtorsuit.artsuit.ca/public/api/allListings', {
     //   method: 'GET',
     //   mode: 'cors',
     //   cache: 'no-cache'
@@ -39,11 +39,8 @@ function HomePage() {
       <NavBar></NavBar>
       <div className="container mt-5">
         <div className="row">
-          <div className='col-md-6'>
-          <Link to="/home"><div className='btn btn-outline-primary d-block'>Grid View</div></Link>
-          </div>
-          <div className='col-md-6'>
-            <Link to="/mapview"><div className='btn btn-outline-primary d-block'>Map View</div></Link>
+          <div className='col-md-12 btn btn-outline-warning d-block'>
+            <Link to="/mapview">Map View</Link>
           </div>
         </div>
 
