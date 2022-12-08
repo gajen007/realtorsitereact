@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { login } from '../Features/checkSession'
 function LoginPage() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -12,7 +14,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
-
+  const dispatchLoggedInStatus = useDispatch();
 
   const loginFunction = (e) => {
     e.preventDefault();
@@ -38,10 +40,13 @@ function LoginPage() {
       .then((data) => {
         alert(data.message);
         if (data.result) {
-          var realtorSuit = { "userName": email, "userType": userType };
-          localStorage.setItem("realtorSuit", JSON.stringify(realtorSuit));
-          window.location.href="/home"
-          //navigate("/home");
+          //redux approach
+          dispatchLoggedInStatus(login())
+          //localStorage Approach
+          //var realtorSuit = { "userName": email, "userType": userType };
+          //localStorage.setItem("realtorSuit", JSON.stringify(realtorSuit));
+          //window.location.href="/home"
+          navigate("/home");
         }
       })
       .catch((e) => {

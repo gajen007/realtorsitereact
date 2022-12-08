@@ -11,9 +11,13 @@ import Map from "../Components/Map.js";
 import MapView from "../Pages/MapView.js";
 import React from "react";
 import Favourite from "../Pages/Favourite.js";
+import { useSelector } from 'react-redux'
+import { getLoggedInStatus } from '../Features/checkSession'
+
 const Ourroutes = () => {
+  const loggedInStatus=useSelector(getLoggedInStatus);
   const protect=(element)=>{
-    if(localStorage.getItem("realtorSuit")){
+    if(loggedInStatus){
       return element
     }else{
       return <Login/>

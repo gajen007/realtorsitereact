@@ -1,16 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { logout } from '../Features/checkSession';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faRightFromBracket, faComments, faHome, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
-// import { useState } from "react";
-// import MapV2 from "../Components/MapV2";
 
 function NavBar() {
     const navigate = useNavigate();
+    const dispatchLoggedInStatus = useDispatch();
     const logoutFunction = () => {
-        localStorage.clear();
+        dispatchLoggedInStatus(logout())
         navigate("/");
     }
-    // const [favourite, setFavourite]=useState(0);
     var count=0;
     var fav={"fav":[]};
     if(localStorage.getItem("favData")){
@@ -20,11 +20,6 @@ function NavBar() {
     }
     return (
         <>
-            {/* <MapV2
-                latitude={6.9270786}
-                longitude={79.861243}
-                text={"Raguraj"}
-            ></MapV2> */}
             <nav className="navbar navbar-expand-lg bg-dark">
                 <div className="container-fluid">
                     <Link to="/home"><div className="navbar-brand text-white btn border border-dark"><FontAwesomeIcon icon={faHome} /></div></Link>
