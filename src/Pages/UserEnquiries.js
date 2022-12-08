@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { Link } from 'react-router-dom';
@@ -19,7 +20,7 @@ function UserEnquiries() {
 
             }).catch(err => console.error(err));
 
-    }, []);
+    }, [chats]);
     return (
         <React.Fragment>
             <NavBar></NavBar>

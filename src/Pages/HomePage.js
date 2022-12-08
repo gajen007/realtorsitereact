@@ -1,3 +1,4 @@
+
 import ListingGrid from '../Components/ListingGrid.js';
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -12,7 +13,7 @@ function HomePage() {
   const fetchFunction = async () => {
     try {
       await axios
-        .get('https://realtorsuit.artsuit.ca/public/api/allListings')
+        .get("https://realtorsuit.artsuit.ca/public/api/allListings")
         .then(res => {
           setListings(res.data['listings']);
         });
@@ -23,7 +24,7 @@ function HomePage() {
   }
   useEffect(() => {
     fetchFunction();
-    // fetch('https://realtorsuit.artsuit.ca/public/api/allListings', {
+    // fetch(Globals.apiEndPoint+'allListings', {
     //   method: 'GET',
     //   mode: 'cors',
     //   cache: 'no-cache'

@@ -1,3 +1,4 @@
+
 import NavBar from "./NavBar";
 import ListingGrid from '../Components/ListingGrid.js';
 import Spinner from 'react-bootstrap/Spinner';
@@ -18,7 +19,7 @@ function MapView() {
     const fetchFunction = async () => {
         try {
             await axios
-                .get('https://realtorsuit.artsuit.ca/public/api/allListings')
+                .get("https://realtorsuit.artsuit.ca/public/api/allListings")
                 .then(res => {
                     setListings(res.data['listings']);
                 });

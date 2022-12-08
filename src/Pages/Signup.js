@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 function Signup() {
 
@@ -38,7 +39,7 @@ function Signup() {
       })
       .then((data) => {
         alert(data.message);
-        if(data.message=="Sign-up Succeeded..!"){
+        if(data.message==="Sign-up Succeeded..!"){
           navigate("/login");
         }
       })
@@ -104,7 +105,7 @@ function Signup() {
             <input
               type="password"
               className={
-                ((password === cnpassword) && (password != ""))
+                ((password === cnpassword) && (password !== ""))
                   ? "form-control-lg form-control rounded-3 border border-success"
                   : "form-control-lg form-control rounded-3 border border-danger"
               }
@@ -115,7 +116,7 @@ function Signup() {
               onChange={(e) => setCnPassword(e.target.value)}
             />
             {
-              ((password === cnpassword) && (password != ""))
+              ((password === cnpassword) && (password !== ""))
                 ? ""
                 : <div align="right" className="text-danger">*Password mismatch</div>
             }
