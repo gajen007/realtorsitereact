@@ -1,9 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { logout } from '../Features/checkSession';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoggedInStatus, logout } from '../Features/checkSession';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faRightFromBracket, faComments, faHome, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
-
 function NavBar() {
     const navigate = useNavigate();
     const dispatchLoggedInStatus = useDispatch();
@@ -11,6 +10,7 @@ function NavBar() {
         dispatchLoggedInStatus(logout())
         navigate("/");
     }
+    const loggedInStatus=useSelector(getLoggedInStatus);
     var count=0;
     var fav={"fav":[]};
     if(localStorage.getItem("favData")){
@@ -59,7 +59,7 @@ function NavBar() {
                         <div className="ml-auto btn btn-outline-danger border-dark"><FontAwesomeIcon icon={faHeart} />&nbsp;{count}</div>
                         </Link>
                         {
-                            (localStorage.getItem("realtorSuit"))
+                            (loggedInStatus)
                                 ?
                                 <button onClick={logoutFunction} className="ml-auto btn btn-outline-warning border-dark"><FontAwesomeIcon icon={faRightFromBracket} /></button>
                                 :
